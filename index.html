@@ -5,65 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Aprende el Abecedario</title>
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <style>
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
-        }
-        .fadeIn { animation: fadeIn 0.5s ease-in-out; }
-        .bounce { animation: bounce 1s infinite; }
-        .rainbow-text {
-            background: linear-gradient(to right, #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #4B0082, #9400D3);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        /* Estilos del modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            justify-content: center;
-            align-items: center;
-        }
-        .modal-content {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-        }
-        .keyboard {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 10px;
-            margin-top: 10px;
-        }
-        .key {
-            padding: 10px;
-            font-size: 18px;
-            font-weight: bold;
-            background: #3498db;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .key:hover {
-            background: #2980b9;
-        }
-    </style>
+    <link rel="stylesheet" href="css/index.css">
 </head>
 <body class="flex flex-col items-center justify-center h-screen bg-gradient-to-r from-blue-300 to-purple-300 text-white">
 
@@ -86,7 +28,13 @@
             <img id="image-display" class="w-40 h-40 bounce border-1 border-white hidden">
         </div>
 
-        <div id="word-display" class="text-2xl text-blue-800 mt-4 font-semibold"></div>
+        <div id="word-display" class="text-3xl text-blue-800 mt-4 font-semibold">
+            <span id="first-letter" class="text-red-600"></span>
+            <span id="middle-letters"></span>
+            <span id="last-letter" class="text-red-600"></span>
+        </div>
+
+        
     </div>
 
     <!-- Modal del teclado virtual -->
@@ -102,113 +50,7 @@
         </div>
     </div>
 
-    <script>
-        const letters = {
-            
-            a: { word: "Ardilla", image: "ardilla.png", syllables: ["Ardilla", "empieza por", "a"] },
-            b: { word: "Burro", image: "burro.png", syllables: ["Burro", "empieza por", "b"] },
-            c: { word: "Casa", image: "casa.png", syllables: ["Casa", "empieza por", "c"] },
-            d: { word: "Dado", image: "dado.png", syllables: ["Dado", "empieza por", "d"] },
-            e: { word: "Elefante", image: "elefante.png", syllables: ["Elefante", "empieza por", "e"] },
-            f: { word: "Foca", image: "foca.png", syllables: ["Foca", "empieza por", "f"] },
-            g: { word: "Gato", image: "gato.png", syllables: ["Gato", "empieza por", "g"] },
-            h: { word: "Helado", image: "helado.png", syllables: ["Helado", "empieza por", "h"] },
-            i: { word: "Iguana", image: "iguana.png", syllables: ["Iguana", "empieza por", "i"] },
-            j: { word: "Jirafa", image: "jirafa.png", syllables: ["Jirafa", "empieza por", "j"] },
-            k: { word: "Koala", image: "koala.png", syllables: ["Koala", "empieza por", "k"] },
-            l: { word: "Luna", image: "luna.png", syllables: ["Luna", "empieza por", "l"] },
-            m: { word: "Mono", image: "mono.png", syllables: ["Mono", "empieza por", "m"] },
-            n: { word: "Nube", image: "nube.png", syllables: ["Nube", "empieza por", "n"] },
-            ñ: { word: "Ñandú", image: "nandu.png", syllables: ["Ñandú", "empieza por", "ñ"] },
-            o: { word: "Oso", image: "oso.png", syllables: ["Oso", "empieza por", "o"] },
-            p: { word: "Pato", image: "pato.png", syllables: ["Pato", "empieza por", "p"] },
-            q: { word: "Queso", image: "queso.png", syllables: ["Queso", "empieza por", "q"] },
-            r: { word: "Rana", image: "rana.png", syllables: ["Rana", "empieza por", "r"] },
-            s: { word: "Sol", image: "sol.png", syllables: ["Sol", "empieza por", "s"] },
-            t: { word: "Tortuga", image: "tortuga.png", syllables: ["Tortuga", "empieza por", "t"] },
-            u: { word: "Uva", image: "uva.png", syllables: ["Uva", "empieza por", "u"] },
-            v: { word: "Vaca", image: "vaca.png", syllables: ["Vaca", "empieza por", "v"] },
-            w: { word: "Waffle", image: "waffle.png", syllables: ["Waffle", "empieza por", "w"] },
-            x: { word: "Xilófono", image: "xilofono.png", syllables: ["Xilófono", "empieza por", "x"] },
-            y: { word: "Yogur", image: "yogur.png", syllables: ["Yogur", "empieza por", "y"] },
-            z: { word: "Zebra", image: "zebra.png", syllables: ["Zebra", "empieza por", "z"] },
-            0: { word: "CERO", image: "cero.png", syllables: ["Cero", "empieza por", "C"] },
-            1: { word: "Uno", image: "uno.png", syllables: ["Uno", "empieza por", "U"] },
-            2: { word: "Dos", image: "dos.png", syllables: ["Dos", "empieza por", "D"] },
-            3: { word: "Tres", image: "tres.png", syllables: ["Tres", "empieza por", "T"] },
-            4: { word: "Cuatro", image: "cuatro.png", syllables: ["Cuatro", "empieza por", "C"] },
-            5: { word: "Cinco", image: "cinco.png", syllables: ["Cinco", "empieza por", "C"] },
-            6: { word: "Seis", image: "seis.png", syllables: ["Seis", "empieza por", "S"] },
-            7: { word: "Siete", image: "siete.png", syllables: ["Siete", "empieza por", "S"] },
-            8: { word: "Ocho", image: "ocho.png", syllables: ["Ocho", "empieza por", "O"] },
-            9: { word: "Nueve", image: "nueve.png", syllables: ["Nueve", "empieza por", "N"] }
-        };
-
-        let currentUtterance = null;
-
-        const openKeyboardBtn = document.getElementById("openKeyboardBtn");
-        const closeKeyboardBtn = document.getElementById("closeKeyboardBtn");
-        const keyboardModal = document.getElementById("keyboardModal");
-        const keyboardContainer = document.querySelector(".keyboard");
-        const letterDisplay = document.getElementById("letter-display");
-        const imageDisplay = document.getElementById("image-display");
-        const wordDisplay = document.getElementById("word-display");
-
-        openKeyboardBtn.addEventListener("click", () => {
-            keyboardModal.style.display = "flex";
-        });
-
-        closeKeyboardBtn.addEventListener("click", () => {
-            keyboardModal.style.display = "none";
-        });
-
-        Object.keys(letters).forEach(letter => {
-            let button = document.createElement("button");
-            button.classList.add("key");
-            button.textContent = letter.toUpperCase();
-            button.addEventListener("click", () => {
-                letterDisplay.textContent = letter.toUpperCase();
-                imageDisplay.src = letters[letter].image;
-                imageDisplay.classList.remove('hidden');
-                wordDisplay.textContent = letters[letter].word;
-                imageDisplay.style.display = "block";
-                keyboardModal.style.display = "none";
-                speak(letter.toUpperCase() + ", " + letters[letter].word);
-            });
-            keyboardContainer.appendChild(button);
-        });
-
-        
-
-        function speak(text) {
-            const speech = new SpeechSynthesisUtterance(text);
-            speech.lang = "es-ES";
-            speech.rate = 0.8; // Velocidad de la voz
-            window.speechSynthesis.speak(speech);
-        }
-
-        document.addEventListener('keydown', function(event) {
-            const key = event.key.toLowerCase();
-            if (letters[key]) {
-                if (currentUtterance) {
-                    window.speechSynthesis.cancel();
-                }
-                displayLetter(key);
-                speakLetterAndWord(key);
-            }
-        });
-
-        function displayLetter(key) {
-            if (letters[key]) {
-                letterDisplay.textContent = key.toUpperCase();
-                wordDisplay.textContent = letters[key].word;
-                imageDisplay.src = letters[key].image;
-                imageDisplay.classList.remove('hidden');
-
-                speak(key.toUpperCase() + ", " + letters[key].word);
-            }
-        }
-    </script>
+    <script src="js/index.js"></script>
 
 </body>
 </html>
