@@ -18,7 +18,6 @@
             <span>a</span><span>p</span><span>r</span><span>e</span><span>n</span><span>d</span><span>e</span><span>r</span>
         </h1>
 
-        <!-- Botón para abrir el teclado -->
         <button id="openKeyboardBtn" class="px-6 py-3 mt-4 text-white bg-blue-500 rounded-lg shadow-lg hover:bg-blue-600 transition">
             Abrir Teclado
         </button>
@@ -34,16 +33,20 @@
             <span id="last-letter" class="text-red-600"></span>
         </div>
 
-        
+        <div id="nav-buttons" class="hidden mt-4 space-x-4">
+            <button id="prevWordBtn" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition">
+                ← Anterior
+            </button>
+            <button id="nextWordBtn" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition">
+                Siguiente →
+            </button>
+        </div>
     </div>
 
-    <!-- Modal del teclado virtual -->
     <div id="keyboardModal" class="modal flex">
         <div class="modal-content">
             <h2 class="text-lg font-bold text-gray-700">Selecciona una letra</h2>
-            <div class="keyboard">
-                <!-- Las teclas se generarán dinámicamente con JavaScript -->
-            </div>
+            <div class="keyboard"></div>
             <button id="closeKeyboardBtn" class="mt-4 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition">
                 Cerrar
             </button>
