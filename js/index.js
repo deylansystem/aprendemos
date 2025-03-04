@@ -1,7 +1,7 @@
 const letters = {
             
     a: [
-        { word: "Ardilla", image: "ardilla.png", syllables: ["empieza por", "a", "y termina con", "a"] },
+        { word: "Ardilla", image: "ardilla.png", syllables: ["empieza por", "a", "ardilla"] },
         { word: "Ave", image: "ave.png", syllables: ["empieza por", "a", "y termina con", "e"] },
         { word: "Avión", image: "avion.png", syllables: ["empieza por", "a", "y termina con", "n"] },
         { word: "Aguila", image: "aguila.png", syllables: ["empieza por", "a", "y termina con", "a"] }
