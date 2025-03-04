@@ -99,7 +99,7 @@ Object.keys(letters).forEach(letter => {
 function speak(text) {
     const speech = new SpeechSynthesisUtterance(text);
     speech.lang = "es-ES";
-    speech.rate = 0.8; // Velocidad de la voz
+    speech.rate = 0.6; // Velocidad de la voz
     window.speechSynthesis.speak(speech);
 }
 
