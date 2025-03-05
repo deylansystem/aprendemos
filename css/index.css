@@ -13,10 +13,10 @@
     background: linear-gradient(to right, #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #4B0082, #9400D3);
     -webkit-background-clip: text;
     background-clip: text;
-    color: transparent;
+    color: #b2484885;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
 }
 
-/* Estilos del modal */
 .modal {
     display: none;
     position: fixed;
@@ -27,6 +27,7 @@
     background: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
+    z-index: 1000;
 }
 .modal-content {
     background: white;
@@ -54,4 +55,20 @@
 }
 .key:hover {
     background: #2980b9;
+}
+.category-btn {
+    padding: 12px 24px;
+    margin: 5px;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+/* Estilo adicional para el selector */
+#voiceSelect {
+    min-width: 250px;
+    border: 2px solid #3498db;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+#image-display {
+    cursor: pointer;
 }
