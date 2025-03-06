@@ -190,7 +190,8 @@ const shapes = {
     "⭐": [{ word: "Estrella", image: "estrella.png", syllables: ["empieza por", "E"] }],
     "🌙": [{ word: "Media Luna", image: "medialuna.png", syllables: ["empieza por", "M"] }],
     "⬟": [{ word: "Pentágono", image: "pentagono.png", syllables: ["empieza por", "P"] }],
-    "⬭": [{ word: "Óvalo", image: "ovalo.png", syllables: ["empieza por", "O"] }]
+    "⬭": [{ word: "Óvalo", image: "ovalo.png", syllables: ["empieza por", "O"] }],
+    "❤️": [{ word: "Corazón", image: "corazon.png", syllables: ["empieza por", "C"]}]
 };
 
 let currentCategory = null;
